@@ -132,7 +132,7 @@ def sqrt(n):
         approx = better
 
 
-print("sqrt",sqrt(25.0))
+print("sqrt",sqrt(36.0))
 
 def is_prime(n):
     """Write a function, is_prime, which takes a single integer
@@ -141,8 +141,42 @@ def is_prime(n):
         if n % i == 0:
             return False
     return True
-    
 
+        
+"""Revisit the drunk pirate problem from the exercises in chapter 3. This time,
+the drunk pirate makes a turn, and then takes some steps forward, and repeats this.
+Our social science student now records pairs of data: the angle of each turn, and the
+number of steps taken after the turn. Her experimental data is [(160, 20), (-43, 10),
+(270, 8), (-43, 12)]. Use a turtle to draw the path taken by our drunk friend.
+"""
+
+import turtle
+wn = turtle.Screen()
+fun = turtle.Turtle()
+
+steps = [(160, 20), (-43, 10), (270, 8), (-43, 12)]
+
+for (angle, moves) in steps:
+    fun.right(angle)
+    fun.forward(moves)
+ 
+    
+"""Many interesting shapes can be drawn by the turtle by giving a list of pairs like we did
+above, where the first item of the pair is the
+angle to turn, and the second item is the distance to move forward. Set up a list of pairs
+so that the turtle draws a house with a cross through the centre, as show here. This should
+be done without going over any of the lines / edges more than once, and without lifting your
+pen."""
+
+import turtle
+wn = turtle.Screen()
+fun = turtle.Turtle()
+fun.pensize(10)
+house = [(270,50), (30, 50), (120,50), (120,50), (225,70.1), (225,50), (225,70.1), (225,50) ]
+
+for (angle,moves) in house:
+    fun.right(angle)
+    fun.forward(moves)
 
 
 test_suite()    
