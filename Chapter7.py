@@ -113,7 +113,7 @@ print(sum_element(mylist))
 def word_sam(list):
     count =0
     for i in samlist:
-        if len(i) == "sam":
+        if i == "sam":
             count += 1
             break
         count += 1
