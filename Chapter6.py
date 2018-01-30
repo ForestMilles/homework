@@ -58,7 +58,7 @@ def test_suite():
     test(hours_in(9010) == 2)
     
     print("\minutes_sec")
-    #test(minutes_in(9010) == 30)
+#    test(minutes_in(9010) == 30)
 
     print("\nseconds_in")
     #test(seconds_in(9010) == 10)
@@ -189,7 +189,5 @@ def f2c(t):
     b = float(5)/9
     c = a*b
     return int(round(c))
-
-
 
 test_suite()        # Here is the call to run the tests
