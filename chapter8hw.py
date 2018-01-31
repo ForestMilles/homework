@@ -17,6 +17,7 @@ def prefix():
     for letter in prefixes:
         if letter == "O" or letter == "Q":
             print(letter + "u" + suffix)
-        print(letter + suffix)
+        else:
+            print(letter + suffix)
 
 prefix()
