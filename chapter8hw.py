@@ -10,14 +10,13 @@ for letter in prefixes:
 so that Ouack and Quack are spelled correctly.
 """
 
-def prefix
+def prefix():
+    prefixes = "JKLMNOPQ"
+    suffix = "ack"
 
-prefixes = "JKLMNOPQ"
-suffix = "ack"
-
-for letter in prefixes:
-    if letter == "O" or letter == "Q":
-        print(letter + "u" + suffix)
-    print(letter + suffix)
+    for letter in prefixes:
+        if letter == "O" or letter == "Q":
+            print(letter + "u" + suffix)
+        print(letter + suffix)
 
 prefix()
