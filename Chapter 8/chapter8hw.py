@@ -29,8 +29,7 @@ def test_suite():
     test(remove_letter("a", "banana") == "bnn")
     test(remove_letter("z", "banana") == "banana")
     test(remove_letter("i", "Mississippi") == "Msssspp")
-    test(remove_letter("b", "") = "")
-    test(remove_letter("b", "c") = "c")
+
 
 """ Modify:
 
@@ -101,9 +100,10 @@ print(count_letters("aacbasbaab","a"))
 
 def reverse(word):
     reversed = ""
-    for i in range(len(word)-1, -1, -1):
+    for i in range(len(word) -1, -1, -1):
         reversed += word[i]
-        return reversed
+    return reversed
+
 
 #Problem 8
 
@@ -111,9 +111,6 @@ def reverse(word):
 def mirror(word):
     mirrored = word + reverse(word)
     return mirrored
-
-
-print (mirror("happybirthday"))
 
 #Problem 9
 
@@ -125,6 +122,5 @@ def remove_letter(char,text):
             charremovedtext += letter
     return charremovedtext
 print(remove_letter("a","banana"))
-
 
 test_suite()
