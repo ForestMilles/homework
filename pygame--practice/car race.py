@@ -19,6 +19,10 @@ clock = pygame.time.Clock()
 carImg = pygame.image.load('racecar.png')
 
 
+def things(thingx, thingy, thingw, thingh, color):
+    pygame.draw.rect(gameDisplay, color, [thingx, thingy, thingw, thingh])
+
+
 def car(x, y):
     gameDisplay.blit(carImg, (x, y))
 
