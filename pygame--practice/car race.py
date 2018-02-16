@@ -85,6 +85,10 @@ def game_loop():
         gameDisplay.fill(white)
         car(x, y)
 
+        things(thing_startx, thing_starty, thing_width, thing_height, black)
+        thing_starty += thing_speed
+        car(x, y)
+
         if x > display_width - car_width or x < 0:
             crash()
 
