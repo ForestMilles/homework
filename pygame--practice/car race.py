@@ -55,6 +55,12 @@ def game_loop():
 
     x_change = 0
 
+    thing_startx = random.randrange(0, display_width)
+    thing_starty = -600
+    thing_speed = 7
+    thing_width = 100
+    thing_height = 100
+
     gameExit = False
 
     while not gameExit:
