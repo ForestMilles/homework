@@ -20,8 +20,11 @@ clock = pygame.time.Clock()
 carImg = pygame.image.load('racecar.png')
 
 
+
 def things(thingx, thingy, thingw, thingh, color):
     pygame.draw.rect(gameDisplay, color, [thingx, thingy, thingw, thingh])
+
+
 
 
 def car(x, y):
@@ -84,25 +87,18 @@ def game_loop():
         x += x_change
         gameDisplay.fill(white)
 
+
         # things(thingx, thingy, thingw, thingh, color)
         things(thing_startx, thing_starty, thing_width, thing_height, black)
         thing_starty += thing_speed
         car(x, y)
-
+ 
         if x > display_width - car_width or x < 0:
             crash()
 
         if thing_starty > display_height:
             thing_starty = 0 - thing_height
             thing_startx = random.randrange(0, display_width)
-
-        if y < thing_starty + thing_height:
-            print('y crossover')
-
-            if x > thing_startx and x < thing_startx + thing_width or x + car_width > thing_startx and x + car_width < thing_startx + thing_width:
-                print('x crossover')
-                crash()
-
 
         pygame.display.update()
         clock.tick(60)
