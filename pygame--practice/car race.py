@@ -58,6 +58,11 @@ def crash():
     message_display('You Crashed')
 
 
+def quitgame():
+    pygame.quit()
+    quit()
+
+
 def button(msg,x,y,w,h,ic,ac,action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
