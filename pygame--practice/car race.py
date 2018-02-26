@@ -7,10 +7,10 @@ pygame.init()
 display_width = 800
 display_height = 600
 
-black = (0, 0, 0)
+black = (0, 30, 0)
 white = (0, 200, 200)
-red = (200, 0, 0)
-green = (0,200,0)
+red = (200, 200, 0)
+green = (50,200,0)
 
 bright_red = (255,0,0)
 bright_green = (0,255,0)
