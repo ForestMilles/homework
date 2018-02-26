@@ -24,6 +24,13 @@ pygame.display.set_caption('A Simple Race')
 clock = pygame.time.Clock()
 
 carImg = pygame.image.load('racecar.png')
+carImg = pygame.image.load('racecar.png')
+gameIcon = pygame.image.load('carIcon.png')
+
+pygame.display.set_icon(gameIcon)
+
+pause = False
+#crash = True
 
 
 def things_dodged(count):
@@ -49,12 +56,27 @@ def message_display(text):
 
     pygame.display.update()
 
-    time.sleep(2)
+    time.wait(2000)
 
     game_loop()
 
 def crash():
-    message_display('You Crashed')
+    largeText = pygame.font.SysFont("comicsansms", 115)
+    TextSurf, TextRect = text_objects("You Crashed", largeText)
+    TextRect.center = ((display_width / 2), (display_height / 2))
+    gameDisplay.blit(TextSurf, TextRect)
+
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        button("Play Again", 150, 450, 100, 50, green, bright_green, game_loop)
+        button("Quit", 550, 450, 100, 50, red, bright_red, quitgame)
+
+        pygame.display.update()
+        clock.tick(15)
 
 def button(msg,x,y,w,h,ic,ac,action=None):
     mouse = pygame.mouse.get_pos()
@@ -72,36 +94,62 @@ def button(msg,x,y,w,h,ic,ac,action=None):
     textRect.center = ((x + (w / 2)), (y + (h / 2)))
     gameDisplay.blit(textSurf, textRect)
 
+
 def quitgame():
     pygame.quit
     quit()
+
+
+def unpause():
+    global paused
+    paused = False
+
+
+def pause():
+    largeText = pygame.font.SysFont("comicsansms", 115)
+    TextSurf, TextRect = text_objects("Paused", largeText)
+    TextRect.center = ((display_width / 2), (display_height / 2))
+    gameDisplay.blit(TextSurf, TextRect)
+
+    while paused:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                quit()
+
+        button("Continue", 150, 450, 100, 50, green, bright_green, unpause)
+        button("Quit", 550, 450, 100, 50, red, bright_red, quitgame)
+
+        pygame.display.update()
+        clock.tick(15)
+
 
 def game_intro():
     intro = True
 
     while intro:
         for event in pygame.event.get():
-            #print(event)
+            # print(event)
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit()
 
         gameDisplay.fill(white)
-        largeText = pygame.font.SysFont("comicsansms",115)
-        TextSurf, TextRect = text_objects("A Simple Race", largeText)
+        largeText = pygame.font.SysFont("comicsansms", 115)
+        TextSurf, TextRect = text_objects("A bit Racey", largeText)
         TextRect.center = ((display_width / 2), (display_height / 2))
         gameDisplay.blit(TextSurf, TextRect)
 
         button("GO!", 150, 450, 100, 50, green, bright_green, game_loop)
-        button("Quit!", 550, 450, 100, 50, red, bright_red,quitgame)
-
-
+        button("Quit", 550, 450, 100, 50, red, bright_red, quitgame)
 
         pygame.display.update()
         clock.tick(15)
 
 
 def game_loop():
+    global paused
+
     x = (display_width * 0.45)
     y = (display_height * 0.8)
 
@@ -131,10 +179,15 @@ def game_loop():
                     x_change = -5
                 if event.key == pygame.K_RIGHT:
                     x_change = 5
+                if event.key == pygame.K_p:
+                    paused = True
+                    pause()
+
 
             if event.type == pygame.KEYUP:
                 if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
                     x_change = 0
+
 
         x += x_change
         gameDisplay.fill(white)
@@ -144,7 +197,6 @@ def game_loop():
         thing_starty += thing_speed
         car(x, y)
         things_dodged(dodged)
-
 
         if x > display_width - car_width or x < 0:
             crash()
@@ -156,7 +208,7 @@ def game_loop():
             thing_speed += 1
             thing_width += (dodged * 1.2)
 
-        if y < thing_starty + thing_height:
+        if y+15 < thing_starty + thing_height:
             print('y crossover')
 
             if x > thing_startx and x < thing_startx + thing_width or x + car_width > thing_startx and x + car_width < thing_startx + thing_width:
