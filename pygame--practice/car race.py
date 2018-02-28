@@ -4,6 +4,8 @@ import random
 
 pygame.init()
 
+crash_sound = pygame.mixer.Sound("crash.wav")
+
 display_width = 800
 display_height = 600
 
@@ -38,15 +40,19 @@ def things_dodged(count):
     text = font.render("Dodged: "+str(count), True, black)
     gameDisplay.blit(text,(0,0))
 
+
 def things(thingx, thingy, thingw, thingh, color):
     pygame.draw.rect(gameDisplay, color, [thingx, thingy, thingw, thingh])
+
 
 def car(x, y):
     gameDisplay.blit(carImg, (x, y))
 
+
 def text_objects(text, font):
     textSurface = font.render(text, True, black)
     return textSurface, textSurface.get_rect()
+
 
 def message_display(text):
     largeText = pygame.font.Font('freesansbold.ttf',115)
@@ -60,7 +66,10 @@ def message_display(text):
 
     game_loop()
 
+
 def crash():
+    pygame.mixer.Sound.play(crash_sound)
+    pygame.mixer.music.stop()
     largeText = pygame.font.SysFont("comicsansms", 115)
     TextSurf, TextRect = text_objects("You Crashed", largeText)
     TextRect.center = ((display_width / 2), (display_height / 2))
@@ -77,6 +86,7 @@ def crash():
 
         pygame.display.update()
         clock.tick(15)
+
 
 def button(msg,x,y,w,h,ic,ac,action=None):
     mouse = pygame.mouse.get_pos()
@@ -102,10 +112,12 @@ def quitgame():
 
 def unpause():
     global paused
+    pygame.mixer.music.unpause()
     paused = False
 
 
 def pause():
+    pygame.mixer.music.pause()
     largeText = pygame.font.SysFont("comicsansms", 115)
     TextSurf, TextRect = text_objects("Paused", largeText)
     TextRect.center = ((display_width / 2), (display_height / 2))
@@ -136,7 +148,7 @@ def game_intro():
 
         gameDisplay.fill(white)
         largeText = pygame.font.SysFont("comicsansms", 115)
-        TextSurf, TextRect = text_objects("A bit Racey", largeText)
+        TextSurf, TextRect = text_objects("A Simple Race", largeText)
         TextRect.center = ((display_width / 2), (display_height / 2))
         gameDisplay.blit(TextSurf, TextRect)
 
@@ -149,6 +161,9 @@ def game_intro():
 
 def game_loop():
     global paused
+
+    pygame.mixer.music.load('surround.wav')
+    pygame.mixer.music.play(-1)
 
     x = (display_width * 0.45)
     y = (display_height * 0.8)
