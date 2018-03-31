@@ -167,7 +167,7 @@ state_num = 0
 state_num_1 = 0
 
 
-def advance_state_machine():
+def timer():
     global state_num
     if state_num == 0:  # Transition from state 0 to state 1
         tess.forward(70)
@@ -181,10 +181,10 @@ def advance_state_machine():
         tess.back(140)
         tess.fillcolor("green")
         state_num = 0
-    wn.ontimer(advance_state_machine, "5000")
+    wn.ontimer(timer, "10000")
 
 
-def advance_state_machine2():
+def timer2():
     global state_num_1
     if state_num_1 == 0:  # Transition from state 0 to state 1
         guest.fillcolor('gray')
@@ -200,10 +200,10 @@ def advance_state_machine2():
         hunt.fillcolor('gray')
         guest.fillcolor('red')
         state_num_1 = 0
-    wn.ontimer(advance_state_machine2, "10000")
+    wn.ontimer(timer2, "10000")
 
 
-advance_state_machine()
-advance_state_machine2()
+timer()
+timer2()
 
 wn.mainloop()
