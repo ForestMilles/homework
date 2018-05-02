@@ -21,7 +21,7 @@ cal = calendar.TextCalendar()
 print(cal.prmonth(2018, 11))
 
 #d
-d = calendar.LocaleTextCalendar(6, "SPANISH")
+d = calendar.LocaleTextCalendar(6, "SPANNISH")
 d.pryear(2012)
 
 "language that doesn't work"
